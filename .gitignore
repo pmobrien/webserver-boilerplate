@@ -1,5 +1,7 @@
 # server
 server/neo-store/
+server/logs/
+server/store_lock
 server/src/main/resources/com/pmobrien/rest/webapp/*
 server/target/
 

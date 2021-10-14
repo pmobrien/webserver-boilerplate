@@ -5,9 +5,11 @@ import com.google.common.base.Suppliers;
 import com.pmobrien.rest.Application;
 import java.io.File;
 import java.util.function.Supplier;
+
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.kernel.configuration.BoltConnector;
 import org.neo4j.kernel.configuration.Connector.ConnectorType;
+import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
@@ -17,7 +19,7 @@ public class NeoConnector {
   private static final String POJO_PACKAGE = "com.pmobrien.rest.neo.pojo";
   
   private static final NeoConnector INSTANCE = new NeoConnector();
-  private static final Supplier<SessionFactory> SESSION_FACTORY = Suppliers.memoize(() -> initializeSessionFactory());
+  private static final Supplier<SessionFactory> SESSION_FACTORY = Suppliers.memoize(NeoConnector::initializeSessionFactory);
   
   private NeoConnector() {}
   
@@ -31,7 +33,7 @@ public class NeoConnector {
   
   private static SessionFactory initializeSessionFactory() {
     BoltConnector bolt = new BoltConnector("0");
-    
+
     return new SessionFactory(
         new EmbeddedDriver(
             new GraphDatabaseFactory()
@@ -41,7 +43,8 @@ public class NeoConnector {
                 .setConfig(bolt.listen_address, Application.getProperties().getConfiguration().getNeo().getBoltUri())
                 .setConfig(bolt.advertised_address, Application.getProperties().getConfiguration().getNeo().getBoltUri())
                 .setConfig(bolt.encryption_level, BoltConnector.EncryptionLevel.DISABLED.name())
-                .newGraphDatabase()
+                .newGraphDatabase(),
+            new Configuration.Builder().build()
         ),
         POJO_PACKAGE
     );

@@ -12,21 +12,32 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.pmobrien</groupId>
     <artifactId>webserver-boilerplate</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <!-- jetty -->
+        <jetty.version>9.4.44.v20210927</jetty.version>
+
+        <!-- neo4j -->
+        <neo4j.version>3.5.29</neo4j.version>
+        <neo4j-ogm.version>3.2.27</neo4j-ogm.version>
+
+        <!-- misc -->
+        <guava.version>31.0.1-jre</guava.version>
+        <jaxrs.version>2.8.9</jaxrs.version>
         <jersey.version>2.7</jersey.version>
-        <jetty.version>9.4.26.v20200117</jetty.version>
-        
-        <neo4j.version>3.3.0</neo4j.version>
-        <neo4j-ogm.version>3.0.2</neo4j-ogm.version>
+        <jersey.media.version>2.8</jersey.media.version>
+        <slf4j.version>1.7.25</slf4j.version>
+
+        <!-- test dependencies -->
+        <junit.version>5.8.1</junit.version>
     </properties>
 
     <dependencies>
@@ -86,33 +97,33 @@
             <version>${neo4j.version}</version>
         </dependency>
 
-        <!-- other -->
+        <!-- misc -->
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.8.9</version>
+            <version>${jaxrs.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.8</version>
+            <version>${jersey.media.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>22.0</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!-- test -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

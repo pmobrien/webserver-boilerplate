@@ -1,7 +1,28 @@
+import React, { useEffect, useState } from "react";
 import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
+
+  const [hello, setHello] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/hello-world')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log("result");
+          console.log(result);
+          console.log(JSON.stringify(result));
+          setHello(result.hello + ' ' + result.world);
+        },
+        (error) => {
+          setHello(JSON.stringify(error));
+        }
+      )
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +38,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>{hello}</p>
       </header>
     </div>
   );

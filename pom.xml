@@ -12,7 +12,7 @@
     <name>Webserver Boilerplate</name>
 
     <modules>
-        <module>client</module>
+        <module>react-client</module>
         <module>server</module>
     </modules>
 

@@ -6,19 +6,18 @@ import './App.css';
 function App() {
 
   const [hello, setHello] = useState(null);
+  const [world, setWorld] = useState(null);
 
   useEffect(() => {
     fetch('/api/hello-world')
       .then(res => res.json())
       .then(
         (result) => {
-          console.log("result");
-          console.log(result);
-          console.log(JSON.stringify(result));
-          setHello(result.hello + ' ' + result.world);
+          setHello(result.hello);
+          setWorld(result.world);
         },
         (error) => {
-          setHello(JSON.stringify(error));
+          console.error(error);
         }
       )
   }, [])
@@ -27,18 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>{hello}</p>
+        <p>{hello} {world}</p>
       </header>
     </div>
   );

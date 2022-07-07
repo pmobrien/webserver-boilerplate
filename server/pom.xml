@@ -23,7 +23,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- jetty -->
-        <jetty.version>9.4.44.v20210927</jetty.version>
+        <jetty.version>10.0.10</jetty.version>
 
         <!-- neo4j -->
         <neo4j.version>3.5.29</neo4j.version>
